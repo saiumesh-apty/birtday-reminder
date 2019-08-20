@@ -1,0 +1,22 @@
+{
+  "name": "birtday-reminder",
+  "version": "1.0.0",
+  "description": "I will write Later.",
+  "main": "index.js",
+  "scripts": {
+    "build:email": "cd email && npm install && cd ..",
+    "build:client": "cd client && npm install && npm run build && cd ..",
+    "heroku-postbuild": "npm run build:email && npm run build:client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://saiumesh-apty:58a5c0378b7e9295e2aa477b8be012265d2e286e@github.com/saiumesh-apty/birtday-reminder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saiumesh-apty/birtday-reminder/issues"
+  },
+  "homepage": "https://github.com/saiumesh-apty/birtday-reminder#readme"
+}

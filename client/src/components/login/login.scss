@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
+html, body {
+    font-family: 'Nunito', sans-serif;
+}
+
+.login__background {
+    font-family: inherit;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(277deg, rgba(213, 213, 213, 0.02) 0%, rgba(213, 213, 213, 0.02) 50%,rgba(42, 42, 42, 0.02) 50%, rgba(42, 42, 42, 0.02) 100%),linear-gradient(295deg, rgba(73, 73, 73, 0.03) 0%, rgba(73, 73, 73, 0.03) 50%,rgba(229, 229, 229, 0.03) 50%, rgba(229, 229, 229, 0.03) 100%),linear-gradient(145deg, rgba(77, 77, 77, 0.01) 0%, rgba(77, 77, 77, 0.01) 50%,rgba(123, 123, 123, 0.01) 50%, rgba(123, 123, 123, 0.01) 100%),linear-gradient(54deg, rgba(51, 51, 51, 0.03) 0%, rgba(51, 51, 51, 0.03) 50%,rgba(29, 29, 29, 0.03) 50%, rgba(29, 29, 29, 0.03) 100%),linear-gradient(170deg, rgba(9, 9, 9, 0.02) 0%, rgba(9, 9, 9, 0.02) 50%,rgba(243, 243, 243, 0.02) 50%, rgba(243, 243, 243, 0.02) 100%),linear-gradient(264deg, rgba(214, 214, 214, 0.01) 0%, rgba(214, 214, 214, 0.01) 50%,rgba(153, 153, 153, 0.01) 50%, rgba(153, 153, 153, 0.01) 100%),linear-gradient(90deg, rgb(99, 48, 222),rgb(76, 212, 233))
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    font-family: inherit;
+
+    input{
+        font-family: inherit;
+        margin-bottom: 20px;
+        border: 2px solid #6d6d6d;
+        height: 40px;
+        width: 250px;
+        border-radius: 5px;
+        font-size: 16px;
+        padding: 0px 20px;
+    }
+
+    button {
+        font-weight: 600;
+        font-family: inherit;
+        border: 2px solid #555;
+        height: 40px;
+        border-radius: 5px;
+        font-size: 18px;
+    }
+
+}
