@@ -1,14 +1,14 @@
 use actix_web::{ HttpResponse };
 use actix_web::web::{Data, Json};
 // use chrono::{NaiveDate};
-use crate::types::user::{ Login, Response, UpdatePassword };
+use crate::types::user::{ Login, Response, UpdatePassword, LoginResponse };
 use crate::types::postgres_types::{ Postgres };
 use crate::helpers::bcrypt_helper::{verify_password, hash_password};
 
 pub fn login(login: Json<Login>, postgres: Data<Postgres>) -> HttpResponse {
    match postgres.lock() {
        Ok(db) => {
-           let email = db.query("SELECT email, password FROM users WHERE email = $1", &[&login.email]);
+           let email = db.query("SELECT id, email, password FROM users WHERE email = $1", &[&login.email]);
            match email {
                Ok(email_data) => {
                    if email_data.is_empty() {
@@ -17,12 +17,16 @@ pub fn login(login: Json<Login>, postgres: Data<Postgres>) -> HttpResponse {
                        });
                    }
                    let mut hashed_password: String = String::default();
+                   let mut user_id: i32 = -1;
                    for user in email_data.iter() {
                        hashed_password = user.get("password");
+                       user_id = user.get("id");
                        break;
                    }
                    if verify_password(&login.password, &hashed_password) {
-                       return HttpResponse::Ok().json({});
+                       return HttpResponse::Ok().json(LoginResponse {
+                           user_id: user_id
+                       });
                    }
                    HttpResponse::BadRequest().json(Response{
                        message: String::from("email or password is wrong")

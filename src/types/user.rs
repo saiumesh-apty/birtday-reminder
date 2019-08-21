@@ -18,6 +18,11 @@ pub struct Response {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct LoginResponse {
+    pub user_id: i32
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct DOB {
     pub user_id: i32,
     pub dob: String

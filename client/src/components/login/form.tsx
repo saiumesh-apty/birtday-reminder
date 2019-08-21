@@ -1,12 +1,21 @@
 import React, { useState, FormEvent } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import './login.scss';
+import { loginAPI, extractError } from '../../http';
+import { set_user } from '../../utils/auth.util';
 
 function LoginForm(props: RouteComponentProps) {
     const [email, onEmailChange] = useState('');
     const [password, onPasswordChange] = useState('');
-    const onSubmit = (e: FormEvent) => {
+    const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        try {
+            const res = await loginAPI({email, password})
+            set_user(res.user_id);
+            props.history.push('/dashboard');
+        } catch(error) {
+            alert(extractError(error));
+        }
     }
     return (
         <div className="login__background">
