@@ -2,6 +2,7 @@ use lazy_static;
 use r2d2::PooledConnection;
 use r2d2_postgres::{ PostgresConnectionManager, TlsMode };
 use std::sync::{ Arc, Mutex };
+use std::{env};
 
 #[derive(Debug)]
 struct Database {
@@ -10,12 +11,18 @@ struct Database {
 
 type PGInstance = Arc<Mutex<PooledConnection<PostgresConnectionManager>>>;
 
+fn get_database_url() -> String {
+    let dev_db =  String::from("postgres://postgres:postgres@localhost:5432/actix-web");
+    match env::var("DATABASE_URL") {
+        Ok(env) => env,
+        Err(_err) => dev_db
+    }
+}
+
 // Connects to the Postgres Database
 fn connect_pg() -> PooledConnection<PostgresConnectionManager> {
-    let manager = PostgresConnectionManager::new(
-        "postgres://pqxijtttcyssbn:3c84e676998c167df6dfdccaccffd438338d4a4f02174f3ce60c8464815972e1@ec2-54-221-212-126.compute-1.amazonaws.com:5432/d3in0914d0sos5",
-        TlsMode::None,
-    )
+    println!("db_url {:?}", get_database_url());
+    let manager = PostgresConnectionManager::new(get_database_url(), TlsMode::None)
     .unwrap();
     let pool = r2d2::Pool::new(manager).unwrap();
     let connection = pool.get().unwrap();

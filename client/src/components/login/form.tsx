@@ -11,14 +11,18 @@ function LoginForm(props: RouteComponentProps) {
     return (
         <div className="login__background">
             <form onSubmit={onSubmit}>
+                <label htmlFor="email">Email</label>
                 <input
+                    name="email"
                     autoComplete="on"
                     className='loginform__input'
                     onChange={(e) => onEmailChange(e.target.value)}
                     value={email}
                     type="email"
                     placeholder="email" />
+                <label htmlFor="password">Password</label>
                 <input
+                    name="password"
                     autoComplete="on"
                     className='loginform__input'
                     onChange={(e) => onPasswordChange(e.target.value)}
