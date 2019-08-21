@@ -62,6 +62,7 @@ fn main() -> std::io::Result<()> {
             .wrap(
                 Cors::new()
                     .allowed_origin("http://localhost:3001")
+                    .allowed_origin("https://apty-birthday-reminder.herokuapp.com")
                     .allowed_methods(vec!["GET", "POST", "PUT"])
                     .allowed_headers(vec![header::AUTHORIZATION, header::ACCEPT])
                     .allowed_header(header::CONTENT_TYPE)
